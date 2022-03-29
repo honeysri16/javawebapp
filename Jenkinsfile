@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Deploy to Tomcat') {
             steps {
-		    deploy adapters: [tomcat9(credentialsId: 'tomocat-deployer', path: '', url: 'https://github.com/honeysri16/javawebapp.git')], contextPath: /var/lib/jenkins/workspace/multi-pipeline_master@2, war: '**/*.war'
+		    deploy adapters: [tomcat9(credentialsId: 'tomocat-deployer', path: '', url: 'https://github.com/honeysri16/javawebapp.git')], contextPath: /var/lib/jenkins/workspace/multi-pipeline, war: '**/*.war'
             }
         }
     }
