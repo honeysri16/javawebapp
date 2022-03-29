@@ -12,9 +12,8 @@ pipeline {
         stage('Checkout') {
             steps { 
 		    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/honeysri16/javawebapp.git']]]
-        
         }
-    }
+   }
         stage('Build') {
             steps {
                 sh 'mvn clean install -f pom.xml'
