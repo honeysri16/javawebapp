@@ -10,7 +10,8 @@ pipeline {
 	}
     stages {
         stage('Checkout') {
-            steps { checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/honeysri16/javawebapp.git']]]
+            steps { 
+		    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/honeysri16/javawebapp.git']]]
         
         }
     }
