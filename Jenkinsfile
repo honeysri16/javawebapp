@@ -8,6 +8,9 @@ pipeline {
     tools {
     maven 'Maven3.8.4'
     }
+	options {
+        withAWS(profile:'default')
+        }
     stages {
         stage('Checkout') {
             steps {
@@ -19,10 +22,10 @@ pipeline {
                 sh 'mvn clean install -f pom.xml'
             }
 	}
-	stage('s3 bucket') {
-		    steps {
-			    s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'jenkins-dev2', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'us-iso-east-1', showDirectlyInBrowser: false, sourceFile: '**/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 's3', userMetadata: []
-    }
+	stage('S3Bucket') {
+                 steps {
+       s3Upload(acl: 'Private', bucket:"jenkins-dev1", cacheControl: '', excludePathPattern: '', file: 'CounterWebApp.war', workingDir:'/var/lib/jenkins/workspace/mutli-pipeline_main/target/')
 }
     }
+}
 }
