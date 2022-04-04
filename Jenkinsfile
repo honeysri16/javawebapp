@@ -24,7 +24,7 @@ pipeline {
 	}
 	stage('S3Bucket') {
             steps {
-             s3Upload(acl: 'Private', bucket:"jenkins-dev2", cacheControl: ", excludePathPattern: ", file: 'CounterWebApp.war', workingDir:'/var/lib/jenkins/workspace/multi-pipeline_master/target/')
+             s3Upload(acl:'Private',bucket:"jenkins-dev2",cacheControl: ",excludePathPattern: ",file: 'CounterWebApp.war',workingDir:'/var/lib/jenkins/workspace/multi-pipeline_master/target/')
 }
     }
 }
