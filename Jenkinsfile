@@ -8,9 +8,6 @@ pipeline {
     tools {
     maven 'Maven3.8.4'
     }
-	options {
-        withAWS(profile:'default')
-        }
     stages {
         stage('Checkout') {
             steps {
@@ -22,10 +19,5 @@ pipeline {
                 sh 'mvn clean install -f pom.xml'
             }
 	}
-	stage('S3Bucket') {
-            steps {
-             s3Upload(acl:'Private',bucket:"jenkins-dev2",cacheControl: ",excludePathPattern: ",file: 'CounterWebApp.war',workingDir:'/var/lib/jenkins/workspace/multi-pipeline_master/target/')
-}
-    }
 }
 }
