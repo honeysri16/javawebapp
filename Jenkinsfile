@@ -3,11 +3,13 @@ pipeline {
 		choice(choices: ['Dev', 'QA'], description: 'Target for build  env', name: 'env')
 		choice(choices: ['Y','N'], description: 'is the deployment for release' , name: 'isRelease')
 	}
-	
     agent any
     tools {
     maven 'Maven3.8.4'
     }
+   options {
+        withAWS(profile:'default')
+        }
     stages {
         stage('Checkout') {
             steps {
