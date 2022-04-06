@@ -7,9 +7,6 @@ pipeline {
     tools {
     maven 'Maven3.8.4'
     }
-   options {
-        withAWS(profile:'default')
-        }
     stages {
         stage('Checkout') {
             steps {
